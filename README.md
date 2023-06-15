@@ -30,7 +30,7 @@ Add the EasySQL dependency to the dependencies section:
 ```groovy
 dependencies {
     // other dependencies
-    implementation 'com.github.DevHafeez:EasySQL:1.0.0'
+    implementation 'com.github.DevHafeez:EasySQL:v1.0.0'
 }
 ```
 
