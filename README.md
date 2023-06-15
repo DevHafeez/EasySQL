@@ -14,11 +14,26 @@ EasySQL is a lightweight and user-friendly SQLite wrapper for Android, designed 
 
 ### Installation
 
-Add the following dependency to your app's `build.gradle` file:
+In your project's root build.gradle file, add the JitPack repository to the allprojects section:
 
 ```groovy
-implementation 'com.hafeez:easysql:1.0.0'
+allprojects {
+    repositories {
+        // other repositories
+        maven { url 'https://jitpack.io' }
+    }
+}
 ```
+
+Add the EasySQL dependency to the dependencies section:
+
+```groovy
+dependencies {
+    // other dependencies
+    implementation 'com.github.DevHafeez:EasySQL:1.0.0'
+}
+```
+
 ## Usage Example
 ### Creating a table
  ```groovy
