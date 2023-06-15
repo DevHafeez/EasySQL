@@ -12,12 +12,6 @@ EasySQL is a lightweight and user-friendly SQLite wrapper for Android, designed 
 
 ## Getting Started
 
-### Prerequisites
-
-- Android Studio
-- Android SDK
-- Java JDK
-
 ### Installation
 
 Add the following dependency to your app's `build.gradle` file:
