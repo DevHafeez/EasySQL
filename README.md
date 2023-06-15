@@ -67,7 +67,8 @@ easySQL.insertInto("users")
                 // Insertion failed
             }
         });
-        ```
+```
+
 ### Updating data
 
 ```groovy
@@ -84,6 +85,7 @@ easySQL.updateIn("users")
                 // Update failed
             }
         });
+```
 
 ### Deleting data
 
@@ -104,6 +106,7 @@ easySQL.deleteFrom("users")
 ```
 
 ## License
+
 This project is licensed under the MIT License.
 
 Feel free to modify and customize this template according to your specific needs. Make sure to update the installation instructions and license section with the appropriate information for your project.
