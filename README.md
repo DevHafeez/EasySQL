@@ -23,12 +23,11 @@ EasySQL is a lightweight and user-friendly SQLite wrapper for Android, designed 
 Add the following dependency to your app's `build.gradle` file:
 
 ```groovy
-implementation 'com.example:easysql:1.0.0'
-
-Usage Example
-Creating a table
-java
-Copy code
+implementation 'com.hafeez:easysql:1.0.0'
+```
+## Usage Example
+### Creating a table
+ ```groovy
 EasySQL easySQL = new EasySQL(context, "my_database.db");
 easySQL.createTable("users")
         .addColumn("name", EasySQL.COLUMN_TYPE_TEXT)
@@ -47,8 +46,11 @@ easySQL.createTable("users")
                 // Handle error
             }
         });
-Inserting data
-java
+```
+
+### Inserting data
+
+```groovy
 easySQL.insertInto("users")
         .add("name", "John")
         .add("age", 25)
@@ -65,9 +67,10 @@ easySQL.insertInto("users")
                 // Insertion failed
             }
         });
-Updating data
-java
-Copy code
+        ```
+### Updating data
+
+```groovy
 easySQL.updateIn("users")
         .set("designation", "Senior Sales Manager")
         .executeUpdate(new EasySQL.UpdateCallback() {
@@ -81,9 +84,10 @@ easySQL.updateIn("users")
                 // Update failed
             }
         });
-Deleting data
-java
-Copy code
+
+### Deleting data
+
+```groovy
 easySQL.deleteFrom("users")
         .with("designation", "Sales Manager")
         .executeDelete(new EasySQL.DeleteCallback() {
@@ -97,14 +101,11 @@ easySQL.deleteFrom("users")
                 // Deletion failed
             }
         });
-License
-This project is licensed under the MIT License.
+```
 
-css
-Copy code
+## License
+This project is licensed under the MIT License.
 
 Feel free to modify and customize this template according to your specific needs. Make sure to update the installation instructions and license section with the appropriate information for your project.
 
 Remember to include the necessary attribution and license information as per the licenses used in your project.
-
-I hope this helps you create a clear and informative README for your EasySQL library on GitHub!
