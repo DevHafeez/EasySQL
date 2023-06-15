@@ -114,10 +114,31 @@ easySQL.deleteFrom("users")
         });
 ```
 
+## Please Note
+
+This is an initial version 1.0.0, some users may face issues, if you face any issue, please highlight it for me, I will keep the repo updated insha'Allah!
+
 ## License
+```groovy
+MIT License
 
-This project is licensed under the MIT License.
+Copyright (c) 2023 Hafeez Ul Haq
 
-Feel free to modify and customize this template according to your specific needs. Make sure to update the installation instructions and license section with the appropriate information for your project.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-Remember to include the necessary attribution and license information as per the licenses used in your project.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
