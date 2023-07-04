@@ -40,7 +40,25 @@ public class EasySQL extends SQLiteOpenHelper {
 
     public EasySQL createTable(String tableName) {
         currentTableName = tableName;
+        createTableIfNotExists();
         return this;
+    }
+
+    private void createTableIfNotExists() {
+        StringBuilder createTableQuery = new StringBuilder();
+        createTableQuery.append("CREATE TABLE IF NOT EXISTS ")
+                .append(currentTableName)
+                .append(" (_id INTEGER PRIMARY KEY AUTOINCREMENT)");
+
+        try {
+            SQLiteDatabase db = getWritableDatabase();
+            db.execSQL(createTableQuery.toString());
+            db.close();
+        } catch (Exception e) {
+            if (errorListener != null) {
+                errorListener.onError(e.getMessage());
+            }
+        }
     }
 
     public EasySQL setOnTableCreatedListener(OnTableCreatedListener listener) {
@@ -85,6 +103,7 @@ public class EasySQL extends SQLiteOpenHelper {
 
         return this;
     }
+
 
     private ContentValues insertValues;
 
@@ -192,13 +211,65 @@ public class EasySQL extends SQLiteOpenHelper {
         db.close();
         return resultList;
     }
+    public List<HashMap<String, Object>> selectAll() {
+        List<HashMap<String, Object>> resultList = new ArrayList<>();
+
+        SQLiteDatabase db = getReadableDatabase();
+        String query = "SELECT * FROM " + selectTableName;
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                HashMap<String, Object> rowMap = new HashMap<>();
+                for (int i = 0; i < cursor.getColumnCount(); i++) {
+                    String column = cursor.getColumnName(i);
+                    Object columnValue = null;
+                    int columnType = cursor.getType(i);
+
+                    switch (columnType) {
+                        case Cursor.FIELD_TYPE_NULL:
+                            break;
+                        case Cursor.FIELD_TYPE_INTEGER:
+                            columnValue = cursor.getInt(i);
+                            break;
+                        case Cursor.FIELD_TYPE_FLOAT:
+                            columnValue = cursor.getFloat(i);
+                            break;
+                        case Cursor.FIELD_TYPE_STRING:
+                            columnValue = cursor.getString(i);
+                            break;
+                        case Cursor.FIELD_TYPE_BLOB:
+                            columnValue = cursor.getBlob(i);
+                            break;
+                    }
+
+                    rowMap.put(column, columnValue);
+                }
+                resultList.add(rowMap);
+            } while (cursor.moveToNext());
+        }
+
+        if (cursor != null) {
+            cursor.close();
+        }
+        db.close();
+        return resultList;
+    }
 
     private String updateTableName;
     private String updateColumnName;
     private Object updateNewValue;
+    private String whereUpdateColumn;
+    private Object whereUpdateValue;
 
     public EasySQL updateIn(String tableName) {
         updateTableName = tableName;
+        return this;
+    }
+
+    public EasySQL whereColumn(String columnName, Object value) {
+        whereUpdateColumn = columnName;
+        whereUpdateValue = value;
         return this;
     }
 
@@ -207,13 +278,21 @@ public class EasySQL extends SQLiteOpenHelper {
         updateNewValue = value;
         return this;
     }
-
     public void executeUpdate(final UpdateCallback callback) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(updateColumnName, String.valueOf(updateNewValue));
 
-        int rowsAffected = db.update(updateTableName, values, null, null);
+        StringBuilder whereClause = new StringBuilder();
+        List<String> whereArgs = new ArrayList<>();
+        if (whereUpdateColumn != null && whereUpdateValue != null) {
+            whereClause.append(whereUpdateColumn).append(" = ?");
+            whereArgs.add(String.valueOf(whereUpdateValue));
+        }
+
+        String[] whereArgsArray = whereArgs.toArray(new String[0]);
+
+        int rowsAffected = db.update(updateTableName, values, whereClause.toString(), whereArgsArray);
 
         if (rowsAffected > 0) {
             if (callback != null) {
