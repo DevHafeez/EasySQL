@@ -1,4 +1,6 @@
-# EasySQL
+# EasySQL & EasyCache - For Android
+
+![alt text]([http://url/to/img.png](https://github.com/DevHafeez/EasySQL/blob/main/EasySQL/EasySQL.jpg))
 
 EasySQL is a lightweight and user-friendly SQLite wrapper for Android, designed to simplify common database operations. With EasySQL, you can easily create tables, insert data, select data with WHERE clauses, update data, and delete data with just a few lines of code.
 
@@ -78,22 +80,42 @@ easySQL.insertInto("users")
         });
 ```
 
+### Getting data
+
+```groovy
+List<HashMap<String, Object>> userList;
+List<String> usersStringList;
+
+userList = easySQL.selectFrom("users").selectAll();//.where("name","John");
+usersStringList = new ArrayList<>();
+for (HashMap<String, Object> user : userList) {
+     String nameStr = (String) user.get("name");
+     String typeStr = (String) user.get("type");
+     usersStringList.add(nameStr + " as " + typeStr);
+}
+```
+
 ### Updating data
 
 ```groovy
-easySQL.updateIn("users")
-        .set("designation", "Senior Sales Manager")
-        .executeUpdate(new EasySQL.UpdateCallback() {
-            @Override
-            public void onUpdateSuccess(int rowsAffected) {
-                // Update successful
-            }
+String name = input.getText().toString().trim();
+                                String type = input1.getText().toString().trim();
 
-            @Override
-            public void onUpdateFailure() {
-                // Update failed
-            }
-        });
+                                easySQL.updateIn("users")
+                                        .whereColumn("name", ((String) adapter.getItem(i)).split(" as ")[0])
+                                        .set("name", name)
+                                        .set("type", type)
+                                        .executeUpdate(new EasySQL.UpdateCallback() {
+                                            @Override
+                                            public void onUpdateSuccess(int rowsAffected) {
+                                                Toast.makeText(MainActivity.this, "User updated!", Toast.LENGTH_SHORT).show();
+                                            }
+
+                                            @Override
+                                            public void onUpdateFailure() {
+                                                // Update operation failed
+                                            }
+                                        });
 ```
 
 ### Deleting data
@@ -113,10 +135,19 @@ easySQL.deleteFrom("users")
             }
         });
 ```
+## EasyCache
 
-## Please Note
+EasyCache uses SharedPreferences and gson to store objects as strings and other common types of variables, Here is the demo use of EasyCache:
 
-This is an initial version 1.0.0, some users may face issues, if you face any issue, please highlight it for me, I will keep the repo updated insha'Allah!
+```grrovy
+// context, key(as String), defaultValueOfSameType
+        if (EasyCache.getBoolean(this, "myKey", false)) {
+            EasyCache.storeBoolean(this, "myKey", true);
+        }
+        EasyCache.getString(this, "myKey", "DefaultValue");
+        EasyCache.getInt(this, "myKey", 0);
+        EasyCache.getObject(this, "MyKey", HashMap.class, null);
+```
 
 ## License
 ```groovy
