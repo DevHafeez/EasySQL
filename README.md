@@ -1,3 +1,4 @@
+[![](https://jitpack.io/v/DevHafeez/EasySQL.svg)](https://jitpack.io/#DevHafeez/EasySQL)
 # EasySQL & EasyCache - For Android
 
 <img src="https://github.com/DevHafeez/EasySQL/blob/main/EasySQL/EasySQL.jpg" width="225px" height="225px" />
@@ -32,7 +33,7 @@ Add the EasySQL dependency to the dependencies section:
 ```groovy
 dependencies {
     // other dependencies
-    implementation 'com.github.DevHafeez:EasySQL:v1.0.0'
+    implementation 'com.github.DevHafeez:EasySQL:Tag'
 }
 ```
 
