@@ -1,4 +1,4 @@
-[![](https://jitpack.io/v/DevHafeez/EasySQL.svg)](https://jitpack.io/#DevHafeez/EasySQL)
+Latest Release: [![](https://jitpack.io/v/DevHafeez/EasySQL.svg)](https://jitpack.io/#DevHafeez/EasySQL)
 # EasySQL & EasyCache - For Android
 
 <img src="https://github.com/DevHafeez/EasySQL/blob/main/EasySQL/EasySQL.jpg" width="225px" height="225px" />
