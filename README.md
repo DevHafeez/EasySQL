@@ -1,6 +1,6 @@
 # EasySQL & EasyCache - For Android
 
-![alt text](https://github.com/DevHafeez/EasySQL/blob/main/EasySQL/EasySQL.jpg?raw=true)
+<img src="https://github.com/DevHafeez/EasySQL/blob/main/EasySQL/EasySQL.jpg" width="512px" height="512px" />
 
 EasySQL is a lightweight and user-friendly SQLite wrapper for Android, designed to simplify common database operations. With EasySQL, you can easily create tables, insert data, select data with WHERE clauses, update data, and delete data with just a few lines of code.
 
